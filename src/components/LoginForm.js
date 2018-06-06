@@ -11,8 +11,9 @@ class LoginForm extends React.Component {
   }
 
   switcheroo = (e) => {
-    this.props.onSubmit();
+    e.preventDefault();
     if(this.state.username.length > 0 && this.state.password.length > 0){
+      this.props.onSubmit(this.state);
     }
   }
 
@@ -30,7 +31,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.switcheroo}>
         <div>
           <label>
             Username
@@ -44,7 +45,7 @@ class LoginForm extends React.Component {
           </label>
         </div>
         <div>
-          <button type="submit" onClick={this.switcheroo}>Log in</button>
+          <button type="submit">Log in</button>
         </div>
       </form>
     );
